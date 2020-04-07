@@ -1,0 +1,1 @@
+require 'energy_market'
