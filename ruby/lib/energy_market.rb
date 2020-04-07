@@ -6,7 +6,7 @@ class EnergyMarket
   end
 
 # Returns cost for the variable plan
-  def variable(con)
+  def variable_plan(con)
   	if con <= 100
       price = con * 13.5
       vat = price * 0.05
@@ -21,7 +21,34 @@ class EnergyMarket
     end
   end
 
+# Returns cost for the standard plan
+  def standard_plan(con)
+    if con <= 300
+      price = con * 12.5
+      vat = price * 0.05
+      full_price = price + vat
+      p vat_price = full_price / 100
+    elsif con > 300
+      s = 12.5 * 300
+      con = con - 300
+      full_price = s + (con * 11)
+      vat = full_price * 0.05
+      vat_price = (full_price + vat)/100
+    end
+  end
 
+  def fixed_plan(con)
+
+  end
+
+  def standing_charge(con)
+    
+  end
+
+  # Displays the array of plans it recieves in desending ordern of price
+  # def display_table(array)
+  #   array.sort_by {|x| x[:price]}.reverse
+  # end
 
   # Returns an array of plans available in the market for a given consumption.
   #
