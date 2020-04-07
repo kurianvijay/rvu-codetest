@@ -1,7 +1,7 @@
 require 'json'
 
 class EnergyMarket
-  def initialize(plans)
+  def initialize(plans = Plan.new)
     @plans = plans
   end
 
@@ -42,7 +42,7 @@ class EnergyMarket
   end
 
   def standing_charge(con)
-    
+
   end
 
   # Displays the array of plans it recieves in desending ordern of price
@@ -57,6 +57,11 @@ class EnergyMarket
   #  {"supplier"=>"bg", "plan name"=>"standing-charge", "price"=>"215.83"},
   #  {"supplier"=>"ovo", "plan name"=>"standard", "price"=>"235.73"}]
   def price(consumption)
+    variable_plan(consumption)
+    standard_plan(consumption)
+    fixed_plan(consumption)
+    standing_charge(consumption)
+    @plans
   end
 
   def usage(supplier_name, plan_name, monthly_spend)
