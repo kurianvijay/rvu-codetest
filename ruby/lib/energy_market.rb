@@ -37,12 +37,27 @@ class EnergyMarket
     end
   end
 
+# Returns cost for the fixed plan
   def fixed_plan(con)
-
+      if con >= 250
+        price = 250 * 14.5
+        con = con - 250
+          if con >= 200
+            price = price + 200 * 10.1
+            con = con - 200
+              if con > 0
+                price = price + con * 9
+                vat  = price * 0.05
+                vat_price = (price + vat) / 100
+              end
+          end
+      end
   end
 
   def standing_charge(con)
-
+    price = con * 9 + 7 * 365
+    vat = price * 0.05
+    vat_price = (price + vat) / 100
   end
 
   # Displays the array of plans it recieves in desending ordern of price
